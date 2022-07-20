@@ -99,6 +99,7 @@ body
     margin: 2em;
     margin-bottom: 0;
     height: 40%;
+    width: 79%;
     border-radius: 10px;
 }
 .texto
@@ -126,6 +127,13 @@ body
     margin-top: 1%;
     max-height: 10%;
     margin-bottom: 10%;
+}
+.editar
+{
+    margin-left: 45%;
+    padding: 1px;
+    width: 5%;
+    height: 1%;
 }
 
 /*Ranking*/

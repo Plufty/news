@@ -35,6 +35,7 @@
           ?>
         </li>
         <li><a href="cadastra_usuarios.php">Cadastrar Usuário</a></li>
+        <li><a href="minhas_noticias.php">Minhas Notícias</a></li>
         <li><a href="">Ranking</a></li>
         <li><a href="sobre.php">Sobre</a></li>
       </ul>
@@ -83,7 +84,16 @@
                               <button class='btn' id='deslike' name='botão' value='deslike' onclick='avalia()'><i class='fa fa-thumbs-down fa-lg' aria-hidden='true'></i></button>
                               <button class='fake' id='fake' name='botão' value='fake' onclick='avalia.php'>Fake($fake)</i></button>
                             </div>
-                      </form>";
+                      </form>";        
+
+                      if($_SESSION['id'] == $id_autor)
+                      {
+                        echo "<br><br>
+                        <form id ='voltar' method='POST' action='altera_noticia.php'>                  
+                          <input type='hidden' id='noticia' name='noticia' value=$noticia>
+                            <input type='submit' value='Editar' style = 'margin-top: 2%;'>
+                        </form>";
+                      }
             }
 
         }

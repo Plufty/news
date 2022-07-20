@@ -8,7 +8,7 @@
 
 	<head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>News - Início</title>
+    <title>News - Minhas Notícias</title>
     <link href="CSS/style.css" rel="stylesheet">
     <script src="https://use.fontawesome.com/fe459689b4.js"></script>
 	</head>
@@ -35,8 +35,8 @@
         ?>
       </li>
       <li><a href="cadastra_usuarios.php">Cadastrar Usuário</a></li>
-      <li><a href="ranking_completo.php">Ranking</a></li>
       <li><a href="minhas_noticias.php">Minhas Notícias</a></li>
+      <li><a href="ranking_completo.php">Ranking</a></li>
       <li><a href="sobre.php">Sobre</a></li>
       </ul>
     </div>
@@ -60,7 +60,8 @@
       
 
       $sql = "SELECT n.ID, n.Titulo, n.Texto, n.Imagem, u.Nome as Autor, u.Pontos  FROM noticias as n
-              JOIN usuarios as u WHERE n.ID_Usuario = u.ID
+              JOIN usuarios as u ON n.ID_Usuario = u.ID
+              WHERE u.ID = ".$_SESSION['id']."
               ORDER BY ID DESC LIMIT $inicio, $quantidade";
       $result = $conn->query($sql);
       
@@ -79,8 +80,13 @@
               $autor = $row['Autor'];
               $pontos = $row['Pontos'];
               $banner = "img/".$row['Imagem'];
-              echo "<form class = 'form1' id='form1' method='GET' action='noticia.php'>
-                      <div class='quadro-noticias'>
+              echo "
+              <div class='quadro-noticias'>
+              <form class = 'editar' id ='editar' method='POST' action='altera_noticia.php'>                  
+                  <input type='hidden' id='noticia' name='noticia' value=$id>
+                  <input type='submit' value='Editar'>
+              </form>  
+                <form class = 'form1' id='form1' method='GET' action='noticia.php'>
                       <input type='hidden' id='noticia' name='noticia' value=$id>
                           <h1>$titulo</h1>
                           <figure class = 'banner'>
@@ -91,15 +97,15 @@
                           <div class = 'botões'>
                             <input type='submit' value='Ver Mais'>
                           </div>
-                      </div>
-                    </form>";
+                    </form>                          
+                </div>";
           }
         
 
         echo "<div><ul class = 'paginação'>";
         for($i = 1; $i < $num_pages+1; $i++)
         { 
-            echo "<li><a href='index.php?page=$i' style='text-decoration: none;'>$i</a></li>";
+            echo "<li><a href='minhas_noticias.php?page=$i' style='text-decoration: none;'>$i</a></li>";
         }
         echo "</ul></div><br><br><br>";
         }

@@ -4,6 +4,8 @@ include('connect.inc.php');
 $titulo = $_POST['titulo'];
 $texto = $_POST['texto'];
 $usuario = $_POST['usuario'];
+$action = $_POST['action'];
+$id = $_POST['noticia'];
 
 
 if(isset($_FILES['arquivo']))
@@ -32,8 +34,8 @@ else
 {    
     $existe_noticias = FALSE;
 
-    $consulta_noticias = "SELECT titulo FROM noticias 
-                        WHERE titulo LIKE '%$titulo%'";
+    $consulta_noticias = "SELECT Titulo, Imagem FROM noticias 
+                        WHERE Titulo LIKE '$titulo'";
     $result = $conn->query($consulta_noticias);
     while($row = $result->fetch_assoc()) 
     {
@@ -57,12 +59,47 @@ else
     }
     else
     {
-        echo "<br>Notícia já existente.";
+        if($action == 'update' && isset($_FILES['arquivo']))
+        {
+            $sql = "UPDATE noticias 
+                SET Titulo='$titulo', Texto='$texto', Imagem = '$arquivo' 
+                WHERE ID=$id";  
+
+            if ($conn->query($sql) === TRUE) 
+            {
+                echo "Registro atualizado com sucesso!";
+            } 
+            else 
+            {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
+        }
+        else if($action == 'update' && !isset($_FILES['arquivo']))
+        {
+            $sql = "UPDATE noticias 
+                SET Titulo='$titulo', Texto='$texto'
+                WHERE ID=$id";  
+
+            if ($conn->query($sql) === TRUE) 
+            {
+                echo "Registro atualizado com sucesso!";
+            } 
+            else 
+            {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
+
+        }
+        else
+        {
+            echo "<br>Notícia já existente.";
+
+        }
     }    
     $conn->close();
 
     
-    header("Location:index.php");
+    //header("Location:index.php");
 
     exit();   
 
