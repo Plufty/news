@@ -7,6 +7,7 @@ $usuario = $_POST['usuario'];
 $action = $_POST['action'];
 $id = $_POST['noticia'];
 
+var_dump(isset($_FILES['arquivo']));
 
 if(isset($_FILES['arquivo']))
 {

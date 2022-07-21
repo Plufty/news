@@ -78,7 +78,7 @@
                 }
             }
         ?>
-        <form action="" method="POST">
+        <form class = "formulário um"  action="" method="POST">
             <p>
                 <label>E-mail</label>
                 <input type="text" name="email">

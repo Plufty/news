@@ -273,7 +273,7 @@ ul.paginação li a:hover
 
 
 /*Estilizando campos do formulário*/
-.formulário input[type="text"], select, input[type="file"],input[type="date"], .custom-file-upload
+.formulário input[type="text"], select, input[type="file"],input[type="date"], .custom-file-upload, input[type="password"]
 {
     /* Para certificar-se que todos os campos de texto têm as mesmas configurações de fonte. Por padrão, textareas ter uma fonte monospace*/
     font: 1em sans-serif;

@@ -50,6 +50,11 @@
       $inicio = 0;
       $quantidade = 30;
 
+      $sql = "SELECT COUNT(*) AS Quantidade FROM usuarios";
+      $result = $conn->query($sql);
+      $row = $result->fetch_assoc();
+      $num_pages = ceil($row['Quantidade']/$quantidade);
+
       $sql = "SELECT ID, Nome, Email, Pontos FROM usuarios ORDER BY Pontos DESC LIMIT $inicio, $quantidade";
       $result = $conn->query($sql);
       
@@ -70,11 +75,20 @@
                     <p>$pontos pontos</p>
                     </div>";
           }
+        
+
+          echo "<div><ul class = 'paginação'>";
+          for($i = 1; $i < $num_pages+1; $i++)
+          { 
+              echo "<li><a href='ranking_completo.php?page=$i' style='text-decoration: none;'>$i</a></li>";
+          }
+          echo "</ul></div><br><br><br>";
         }
         if($sem_resultados)
         {
             echo "Sem Resultados.";
         }
+        
     ?> 
         
     </div>

@@ -81,7 +81,7 @@
                                 <img src=$banner width='30%' style='border-radius:5px;'><br><br>
                                 <label class='custom-file-upload'> 
                                     Upload
-                                    <input type='file' name='arquivo' id = 'arquivo'>
+                                    <input type='file' name='arquivo' id = 'arquivo' value= '' >
                                 </label>
                             </p>       
             
