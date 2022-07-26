@@ -35,7 +35,12 @@
           ?>
         </li>
         <li><a href="cadastra_usuarios.php">Cadastrar Usuário</a></li>
-        <li><a href="minhas_noticias.php">Minhas Notícias</a></li>
+                    <?php
+                            if(isset($_SESSION['id']))
+                            {
+                                echo "<li><a href='minhas_noticias.php'>Minhas Notícias</a></li>";
+                            }
+                    ?>
         <li><a href="">Ranking</a></li>
         <li><a href="sobre.php">Sobre</a></li>
       </ul>
@@ -49,7 +54,7 @@
 
         $sem_resultados = TRUE;
 
-        $sql = "SELECT n.ID, n.Titulo, n.Texto, n.Imagem, n.Fake, u.Nome as Autor, u.ID as ID_Autor  FROM noticias as n
+        $sql = "SELECT n.ID, n.Titulo, n.Texto, n.Imagem, n.Fake, u.Countpts, n.Pontos, u.Nome as Autor, u.ID as ID_Autor  FROM noticias as n
                 JOIN usuarios as u WHERE n.ID_Usuario = u.ID AND n.ID = $noticia";
         $result = $conn->query($sql);
         
@@ -60,14 +65,29 @@
             
             // Dados de cada registro
             while($row = $result->fetch_assoc()) 
-            {            
-  
+            {
+                $like = 'btn';
+                $deslike = 'btn';
+                $btn_fake = 'btn';            
+                $avaliacao = $row['Countpts'];
+                if($avaliacao == TRUE)
+                {
+                  $like = 'btn like';
+                }
+                else if($avaliacao == FALSE)
+                {
+                  $deslike = 'btn deslike';
+                }
                 $titulo = $row['Titulo'];
                 $texto = $row['Texto'];
                 $id = $row['ID'];
                 $autor = $row['Autor'];
                 $id_autor = $row['ID_Autor'];
                 $fake = $row['Fake'];
+                if($fake > 0)
+                {
+                  $btn_fake = 'btn fake';
+                }
                 $banner = "img/".$row['Imagem'];
                 echo "<form class = 'avalia' id='avalia' method='POST' action='avalia.php'>
                         <input type='hidden' id='id_usuario' name='id_usuario' value=$id_autor>
@@ -80,9 +100,9 @@
                             <div class = 'texto-detalhado'>$texto</div>
                             <div class = 'botões'>
                               <input type='hidden' id='id_usuario' name='id_usuario' value=$id_autor>
-                              <button class='btn' id='like' name='botão' value='like' onclick='avalia.php'><i class='fa fa-thumbs-up fa-lg' aria-hidden='true'></i></button>
-                              <button class='btn' id='deslike' name='botão' value='deslike' onclick='avalia()'><i class='fa fa-thumbs-down fa-lg' aria-hidden='true'></i></button>
-                              <button class='fake' id='fake' name='botão' value='fake' onclick='avalia.php'>Fake($fake)</i></button>
+                              <button class='$like' id='like' name='botão' value='like' onclick='avalia.php'><i class='fa fa-thumbs-up fa-lg' aria-hidden='true'></i></button>
+                              <button class='$deslike' id='deslike' name='botão' value='deslike' onclick='avalia.php'><i class='fa fa-thumbs-down fa-lg' aria-hidden='true'></i></button>
+                              <button class='$btn_fake' id='fake' name='botão' value='fake' onclick='avalia.php'>Fake($fake)</i></button>
                             </div>
                       </form>";        
 

@@ -34,7 +34,12 @@
                     ?>
                 </li>
                 <li><a href="cadastra_usuarios.php">Cadastrar Usuário</a></li>
-                <li><a href="minhas_noticias.php">Minhas Notícias</a></li>
+                    <?php
+                            if(isset($_SESSION['id']))
+                            {
+                                echo "<li><a href='minhas_noticias.php'>Minhas Notícias</a></li>";
+                            }
+                    ?>
                 <li><a href="ranking_completo.php">Ranking</a></li>
                 <li><a href="sobre.php">Sobre</a></li>
             </ul>
@@ -59,7 +64,12 @@
                             <p>
                                 <b>E-mail:</b> 
                                 <input type='text' name='email' value=".$_SESSION['email'].">
-                            </p>           
+                            </p>
+                            
+                            <p>
+                                <b>Senha:</b> 
+                                <input type='password' name='senha'>
+                            </p>            
 
                             <p><b>&nbsp;</b>
                                 <input type='submit' value= 'Atualizar'>

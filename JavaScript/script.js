@@ -16,9 +16,10 @@ function verifica_campos_noticias()
 function verifica_campos_usuario()
 {
     if(document.getElementById("nome").value == ""
-        || document.getElementById("email").value == "")
+        || document.getElementById("email").value == ""
+        || document.getElementById("senha").value == "")
     {
-        alert('Por favor, preencha todos os campos');
+        alert('Por favor, preencha todos os campos');    
         return false;
     }
     else

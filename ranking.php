@@ -3,7 +3,7 @@
       
       $inicio = 0;
       $quantidade = 10;
-
+      $sem_resultados = TRUE;
       $sql = "SELECT ID, Nome, Email, Pontos FROM usuarios ORDER BY Pontos DESC LIMIT $inicio, $quantidade";
       $result = $conn->query($sql);
       

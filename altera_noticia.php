@@ -35,7 +35,12 @@
                 </li>
                 <li><a href="cadastra_usuarios.php">Cadastrar Usuário</a></li>
                 <li><a href="ranking_completo.php">Ranking</a></li>
-                <li><a href="minhas_noticias.php">Minhas Notícias</a></li>
+                    <?php
+                            if(isset($_SESSION['id']))
+                            {
+                                echo "<li><a href='minhas_noticias.php'>Minhas Notícias</a></li>";
+                            }
+                    ?>
                 <li><a href="sobre.php">Sobre</a></li>
             </ul>
         </div>

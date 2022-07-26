@@ -6,7 +6,7 @@ $noticia = $_POST['noticia'];
 if ($button == 'like') 
 {
     $sql = "UPDATE usuarios 
-            SET Pontos= Pontos+1
+            SET Pontos= Pontos+1, Countpts = 1
             WHERE ID=$id"; 
     if ($conn->query($sql) === TRUE) 
     {
@@ -19,7 +19,7 @@ if ($button == 'like')
 else if ($button == 'deslike') 
 {
     $sql = "UPDATE usuarios 
-            SET Pontos= Pontos-2
+            SET Pontos = Pontos-2, Countpts = 0
             WHERE ID=$id"; 
     if ($conn->query($sql) === TRUE) 
     {

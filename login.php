@@ -29,7 +29,12 @@
                     ?>
                 </li>
                 <li><a href="cadastra_usuarios.php">Cadastrar Usuário</a></li>
-                <li><a href="minhas_noticias.php">Minhas Notícias</a></li>
+                    <?php
+                            if(isset($_SESSION['id']))
+                            {
+                                echo "<li><a href='minhas_noticias.php'>Minhas Notícias</a></li>";
+                            }
+                    ?>
                 <li><a href="ranking_completo.php">Ranking</a></li>
                 <li><a href="sobre.php">Sobre</a></li>
             </ul>
@@ -43,17 +48,17 @@
         <h1>Acesse sua conta</h1>
         <?php
             include('connect.inc.php');
-            if(isset($_POST['email']) || isset($_POST['nome']))
+            if(isset($_POST['email']) || isset($_POST['senha']))
             {
-                if(strlen($_POST['nome']) == 0 || strlen($_POST['email']) == 0 )
+                if(strlen($_POST['senha']) == 0 || strlen($_POST['email']) == 0 )
                 {
                     echo "Preencha seus dados!";
                 }
                 else
                 {
-                    $nome = $conn->real_escape_string($_POST['nome']);
+                    $senha = $conn->real_escape_string($_POST['senha']);
                     $email = $conn->real_escape_string($_POST['email']);
-                    $sql = "SELECT * FROM usuarios WHERE Nome = '$nome' AND Email = '$email'";            
+                    $sql = "SELECT * FROM usuarios WHERE Senha = '$senha' AND Email = '$email'";            
                     $result = $conn->query($sql) or die("Falha na execução do código SQL:" .$mysqli->error);
 
                     $quantidade = $result->num_rows;
@@ -73,7 +78,7 @@
                     }
                     else
                     {
-                        echo"Nome ou E-mail incorretos.";
+                        echo"E-mail ou Senha incorretos.";
                     }
                 }
             }
@@ -85,7 +90,7 @@
             </p>
             <p>
                 <label>Senha</label>
-                <input type="password" name="nome">
+                <input type="password" name="senha">
             </p>
             <p>
             <input type="submit" value= "Entrar"></button>

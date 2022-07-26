@@ -210,7 +210,7 @@ body
   }
   .fake
   {
-    color: var(--black);
+    color: red;
   }
   
   .btn:focus 
