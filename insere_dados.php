@@ -7,7 +7,8 @@ $usuario = $_POST['usuario'];
 $action = $_POST['action'];
 $id = $_POST['noticia'];
 
-var_dump(isset($_FILES['arquivo']));
+
+var_dump(is_null($_FILES['arquivo']));
 
 if(isset($_FILES['arquivo']))
 {
@@ -100,7 +101,7 @@ else
     $conn->close();
 
     
-    //header("Location:index.php");
+    header("Location:index.php");
 
     exit();   
 

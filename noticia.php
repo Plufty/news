@@ -70,25 +70,33 @@
                 $deslike = 'btn';
                 $btn_fake = 'btn';            
                 $avaliacao = $row['Countpts'];
-                if($avaliacao == TRUE)
-                {
-                  $like = 'btn like';
-                }
-                else if($avaliacao == FALSE)
-                {
-                  $deslike = 'btn deslike';
-                }
                 $titulo = $row['Titulo'];
                 $texto = $row['Texto'];
                 $id = $row['ID'];
                 $autor = $row['Autor'];
                 $id_autor = $row['ID_Autor'];
-                $fake = $row['Fake'];
+                $fake = $row['Fake']; 
+                $banner = "img/".$row['Imagem'];   
+
+                if(is_null($avaliacao))
+                {                        
+                    $like = 'btn';
+                    $deslike = 'btn';
+                }
+                else if($avaliacao == 1)
+                {
+                  $like = 'btn like';
+                }
+                else if($avaliacao == 0)
+                {
+                  $deslike = 'btn deslike';
+                }
                 if($fake > 0)
                 {
                   $btn_fake = 'btn fake';
                 }
-                $banner = "img/".$row['Imagem'];
+
+                //Aqui todos os botões terão nome de botão para validar no PHP
                 echo "<form class = 'avalia' id='avalia' method='POST' action='avalia.php'>
                         <input type='hidden' id='id_usuario' name='id_usuario' value=$id_autor>
                         <input type='hidden' id='noticia' name='noticia' value=$noticia>
@@ -99,7 +107,6 @@
                             </figure>
                             <div class = 'texto-detalhado'>$texto</div>
                             <div class = 'botões'>
-                              <input type='hidden' id='id_usuario' name='id_usuario' value=$id_autor>
                               <button class='$like' id='like' name='botão' value='like' onclick='avalia.php'><i class='fa fa-thumbs-up fa-lg' aria-hidden='true'></i></button>
                               <button class='$deslike' id='deslike' name='botão' value='deslike' onclick='avalia.php'><i class='fa fa-thumbs-down fa-lg' aria-hidden='true'></i></button>
                               <button class='$btn_fake' id='fake' name='botão' value='fake' onclick='avalia.php'>Fake($fake)</i></button>
