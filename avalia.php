@@ -7,7 +7,7 @@ $noticia = $_POST['noticia'];
 $fake = NULL;
 $votado = NULL;
 
-$sql = "SELECT Avalia FROM avaliacao
+$sql = "SELECT Avalia, Fake FROM avaliacao
         WHERE ID_Usuario = $id AND ID_Noticia = $noticia";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) 
@@ -16,7 +16,7 @@ if ($result->num_rows > 0)
     while($row = $result->fetch_assoc()) 
     {
         $votado = $row['Avalia'];
-        var_dump($votado);
+        $fake = $row['Fake'];
     }
 }
 else
@@ -157,7 +157,6 @@ else if ($button == 'fake')
     }
     else if ($fake == 1)//Se o usuário já tiver votado com Fake
     {
-        echo('Eu cheguei aqui');
         $fake = NULL;
         $sql = "UPDATE usuarios 
                 SET Pontos = Pontos+4
@@ -198,7 +197,7 @@ else
 
 $conn->close();
     
-//header("Location:noticia.php?noticia=$noticia");
+header("Location:noticia.php?noticia=$noticia");
 
 exit(); 
 
