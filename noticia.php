@@ -112,7 +112,7 @@
                               <button class='$deslike' id='deslike' name='botão' value='deslike' onclick='avalia.php'><i class='fa fa-thumbs-down fa-lg' aria-hidden='true'></i></button>
                               <button class='$btn_fake' id='fake' name='botão' value='fake' onclick='avalia.php'><i class='fa fa-ban fa-lg'></i></button>
                             </div>
-                      </form>";        
+                      </form><br>.<br><br><br>";        
 
                       if($_SESSION['id'] == $id_autor)
                       {
