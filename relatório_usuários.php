@@ -1,4 +1,4 @@
-    <?php
+<?php
         if(!isset($_SESSION))
         {
             session_start();
@@ -56,25 +56,17 @@
         $inicio = 0;
         $quantidade = 30;      
         $sem_resultados = TRUE;
-        $posta_noticia= array();
-        $sql = "SELECT ID_Usuario FROM noticias";
-        $result = $conn->query($sql);      if ($result->num_rows > 0) 
-        {
-            while($row = $result->fetch_assoc()) 
-            {
-              array_push($posta_noticia, $row['ID_Usuario']);
-            }
-        } 
 
         $sql = "SELECT COUNT(*) AS Quantidade FROM usuarios";
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
         $num_pages = ceil($row['Quantidade']/$quantidade);
+        $num_usuários = $row['Quantidade'];
 
         $sql = "SELECT ID, Nome, Email, Pontos FROM usuarios ORDER BY Pontos DESC LIMIT $inicio, $quantidade";
         $result = $conn->query($sql);
-        
-
+      
+        echo "<h1>$num_usuários Usuários Cadastrados</h1>";
         if ($result->num_rows > 0) 
         {                    
             $sem_resultados = FALSE;
@@ -85,16 +77,18 @@
 
                 $nome = $row['Nome'];
                 $email = $row['Email'];
-                $pontos = $row['Pontos'];            
-                $id = $row['ID'];
-                if(in_array($id, $posta_noticia))
-                {
-                    echo "<div class = 'ranking-completo'>
-                            <h2>$nome</h2>
-                            <p>$pontos pontos</p>
-                            </div>";
-                }
+                $pontos = $row['Pontos'];
+                echo "<div class = 'relatorio-noticias'>
+                        <h2>$nome</h2>
+                        <p>$email</p>
+                        <p>$pontos pontos</p>
+                        </div>";
             }
+
+            echo "<br><br>
+            <form id ='voltar' method='POST' action='relatorios.php'>
+                <input class = 'voltar' type='submit' value='Voltar'>
+            </form>";
             
 
             echo "<div><ul class = 'paginação'>";
@@ -112,6 +106,15 @@
         ?> 
             
         </div>
+
+<div class = "barra-lateral" id="barra-lateral">
+  <div class = "ranking">
+    <h1>Ranking</h1>
+    <ul>        
+      <?php
+            include('ranking.php');
+        ?>
+  </div>
         
         </body>
         </html>

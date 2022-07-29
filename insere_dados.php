@@ -8,7 +8,6 @@ $action = $_POST['action'];
 $id = $_POST['noticia'];
 
 
-var_dump(is_null($_FILES['arquivo']));
 
 if(isset($_FILES['arquivo']))
 {
@@ -61,22 +60,7 @@ else
     }
     else
     {
-        if($action == 'update' && isset($_FILES['arquivo']))
-        {
-            $sql = "UPDATE noticias 
-                SET Titulo='$titulo', Texto='$texto', Imagem = '$arquivo' 
-                WHERE ID=$id";  
-
-            if ($conn->query($sql) === TRUE) 
-            {
-                echo "Registro atualizado com sucesso!";
-            } 
-            else 
-            {
-                echo "Error: " . $sql . "<br>" . $conn->error;
-            }
-        }
-        else if($action == 'update' && !isset($_FILES['arquivo']))
+        if($action == 'update' && $_FILES['arquivo']['name'] == "")
         {
             $sql = "UPDATE noticias 
                 SET Titulo='$titulo', Texto='$texto'
@@ -91,6 +75,21 @@ else
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }
 
+        }
+        else if($action == 'update' && isset($_FILES['arquivo']))
+        {
+            $sql = "UPDATE noticias 
+                SET Titulo='$titulo', Texto='$texto', Imagem = '$arquivo' 
+                WHERE ID=$id";  
+
+            if ($conn->query($sql) === TRUE) 
+            {
+                echo "Registro atualizado com sucesso!";
+            } 
+            else 
+            {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
         }
         else
         {

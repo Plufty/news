@@ -8,7 +8,7 @@
 
 	<head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
-        <title>News - Sobre</title>
+        <title>News - Relatórios</title>
         <link href="CSS/style.css" rel="stylesheet">
 	</head>
 
@@ -44,39 +44,32 @@
                 <li><a href="relatorios.php">Relatórios</a></li>
             </ul>
         </div>
-	</div>
-
-
+	</div> 
 
 	<div class = "conteudo esquerda"id="conteudo">
-        
-        <h1>Sobre</h1>
-        <h2>Membros do Grupo</h2>
-        <p>Diego William Lima Queiroz</p>
-        <p>diego.w.queiroz@ufv.br</p>
-        <p>Matrícula: ER05222</p>
-        <BR><BR><BR>
-        <p>Felipe Assunção Jordão</p>
-        <p>felipe.jordao@ufv.br</p>
-        <p>Matrícula: ER05155</p>
-        <BR><BR><BR>
-        <p>Gleidson Vinícius Gomes Barbosa</p>
-        <p>gleidson.barbosa@ufv.br</p>
-        <p>Matrícula: ER06331</p>
-    
-        
-    </div>
+      <?php
 
+      
+      
+        echo "<h1>Relatórios</h1>";
+              
+        echo "<form id ='voltar' method='POST' action='relatório_usuários.php'>
+        <input type='submit' value='Relatório de Usuários'>
+        </form>";
 
-    <div class = "barra-lateral" id="barra-lateral">
-        <div class = "ranking">
-        <h1>Ranking</h1>
-            <ul>
-                <?php
-                    include('ranking.php');
-                ?>
-            </ul>
-        </div>
+        echo "<form id ='voltar' method='POST' action='relatório_notícias.php'>
+        <input type='submit' value='Relatório de Notícias'>
+        </form>";
+
+        echo "<form id ='voltar' method='POST' action='relatório_ranking.php'>
+        <input type='submit' value='Listagem de Ranking'>
+        </form>";
+
+        echo "<form id ='voltar' method='POST' action='relatório_fake.php'>
+        <input type='submit' value='Relatório de Notícias Fake'>
+        </form>";
+      ?>
+
 	</div>
 	</body>
 	</html>

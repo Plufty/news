@@ -43,6 +43,7 @@
                     ?>
       <li><a href="ranking_completo.php">Ranking</a></li>
       <li><a href="sobre.php">Sobre</a></li>
+      <li><a href="relatorios.php">Relatórios</a></li>
       </ul>
     </div>
 	</div>
@@ -80,6 +81,10 @@
 
               $titulo = $row['Titulo'];
               $texto = $row['Texto'];
+              if(strlen($texto) > 200)
+              {
+                $texto = substr($texto, 0, 200)."...";
+              }
               $id = $row['ID'];
               $autor = $row['Autor'];
               $pontos = $row['Pontos'];

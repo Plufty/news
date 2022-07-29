@@ -41,8 +41,9 @@
                                 echo "<li><a href='minhas_noticias.php'>Minhas Notícias</a></li>";
                             }
                     ?>
-        <li><a href="">Ranking</a></li>
+        <li><a href="ranking_completo.php">Ranking</a></li>
         <li><a href="sobre.php">Sobre</a></li>
+        <li><a href="relatorios.php">Relatórios</a></li>
       </ul>
     </div>
 	</div>
@@ -109,17 +110,16 @@
                             <div class = 'botões'>
                               <button class='$like' id='like' name='botão' value='like' onclick='avalia.php'><i class='fa fa-thumbs-up fa-lg' aria-hidden='true'></i></button>
                               <button class='$deslike' id='deslike' name='botão' value='deslike' onclick='avalia.php'><i class='fa fa-thumbs-down fa-lg' aria-hidden='true'></i></button>
-                              <button class='$btn_fake' id='fake' name='botão' value='fake' onclick='avalia.php'>Fake($fake)</i></button>
+                              <button class='$btn_fake' id='fake' name='botão' value='fake' onclick='avalia.php'><i class='fa fa-ban fa-lg'></i></button>
                             </div>
                       </form>";        
 
                       if($_SESSION['id'] == $id_autor)
                       {
-                        echo "<br><br>
-                        <form id ='voltar' method='POST' action='altera_noticia.php'>                  
-                          <input type='hidden' id='noticia' name='noticia' value=$noticia>
-                            <input type='submit' value='Editar' style = 'margin-top: 2%;'>
-                        </form>";
+                        echo "<form id ='voltar' method='POST' action='altera_noticia.php'>                  
+                                  <input type='hidden' id='noticia' name='noticia' value=$noticia>
+                                  <input type='submit' value='Editar' style = 'margin-top:2%'>
+                              </form>";
                       }
             }
 

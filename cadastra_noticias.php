@@ -40,6 +40,7 @@
                     ?>
       <li><a href="ranking_completo.php">Ranking</a></li>
       <li><a href="sobre.php">Sobre</a></li>
+      <li><a href="relatorios.php">Relatórios</a></li>
       </ul>
     </div>
 	</div>
